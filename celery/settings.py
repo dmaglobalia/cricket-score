@@ -73,7 +73,7 @@ WSGI_APPLICATION = 'celery.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
+ 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -127,9 +127,20 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
+# STATICFILES_DIRS = [
+#     BASE_DIR / "static",
+#     '/static/',
+# ]
 
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-    '/static/',
-]
+STATIC_URL = '/staticfiles/'
+if DEBUG:
+   STATICFILES_DIRS = [
+   os.path.join(BASE_DIR, 'staticfiles'),
+   ]
+   STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+else:
+   STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
