@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  display: flex;
+}
+
+/* Create two equal columns that sits next to each other */
+.column {
+  flex: 50%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.center {
+  display: block;
+  margin-left: 17%;
+  margin-right: auto;
+  width: 40%;
+  height: 40%;
+}
+</style>
+  </head>
+
+  <body style = "background-color:black; color:grey;">
+    <br /><br /><br /><br /><br />
+
+    <div class = "center">
+  <div  class="vertical-center "  >
+    <h3>TEAM1 : {{form.team_name}} TEAM2 : {{form.vs}}</h3>
+    
+    <div class="row" style = " border-style:solid;">
+      <div class="column" style = "background-color:black; ">
+        <form class="formmain" method="POST">
+        {% csrf_token %} 
+        <h1>FIRST BATTING</h1>
+        
+        TEAM1 : {{form.team_name}} <br><br>
+        Wicket : {{form.wicket}} <br><br>
+        Score : {{form.score}} 
+        <input type="submit" class="btninput" value="Update" /><br><br>
+
+
+                 {% for dt in data %} {{dt.team_name}} {{dt.score}}/{{dt.wicket}} <br />
+                vs <br />
+                {{dt.vs}}  {{dt.score2}}/{{dt.wicket2}}{% endfor %}
+
+      </div>
+
+      <div class="column" style = "background-color:black; ">
+        <h1>SECOND BATTING </h1>
+        TEAM2 : {{form.vs}}<br><br>
+        Wicket : {{form.wicket2}}<br><br>
+        Score : {{form.score2}}
+        <input type="submit" class="btninput" value="Update" /><br><br>
+                {% for dt in data %} {{dt.team_name}} {{dt.score}}/{{dt.wicket}} <br />
+                vs <br />
+                {{dt.vs}}  {{dt.score2}}/{{dt.wicket2}}{% endfor %}
+            </br>
+
+      </form>
+      </div> 
+    </div>
+           <h4><span style = "color:; margin-left : 5%;"> LAST 6 BALLS = 6 | 1 | 1 | 0 | 1 | 2</span> </h4> 
+    </div>
+    </div>
+       
+  </body>
+</html>
